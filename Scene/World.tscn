@@ -10,3 +10,4 @@ position = Vector2( 526.889, 217.94 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 198.781, 141.302 )
+vitesse = 300

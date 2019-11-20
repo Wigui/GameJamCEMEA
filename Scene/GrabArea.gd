@@ -13,7 +13,8 @@ func attraper():
 	var objet = get_nearest_object()
 	if not objet:
 		return
-	objet.get_children
+#	objet.collision_layer = 4
+#	objet.collision_mask = 4
 
 func get_nearest_object():
 	if objets_superposes.size()<=0:
