@@ -1,16 +1,29 @@
-extends Area2D
+extends KinematicBody2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var velocite = Vector2()
+export var vitesse = 400
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _physics_process(delta):
+	_check_control()
+	move_and_slide(velocite)
 
-export var speed = 400  # How fast the player will move (pixels/sec).
-var screen_size  # Size of the game window.
+func _check_control():
+	if Input.is_action_pressed("ui_right"):
+		velocite.x = vitesse
+	elif Input.is_action_pressed("ui_left"):
+		velocite.x = -vitesse
+	elif Input.is_action_pressed("ui_down"):
+		velocite.y = vitesse
+	elif Input.is_action_pressed("ui_up"):
+		velocite.y = -vitesse
+	else: 
+		velocite = Vector2(0,0)
+	if Input.is_action_just_pressed("attraper"):
+		$GrabArea.attraper() #get_node("noeud").function au lieu de $ pour appeler un script qui se situe dans le même noeud
+
+
+
