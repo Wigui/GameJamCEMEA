@@ -9,13 +9,6 @@ func _on_GrabArea_body_entered(body):
 func _on_GrabArea_body_exited(body):
 	objets_superposes.erase(body)
 
-func attraper():
-	var objet = get_nearest_object()
-	if not objet:
-		return
-#	objet.collision_layer = 4
-#	objet.collision_mask = 4
-
 func get_nearest_object():
 	if objets_superposes.size()<=0:
 		return
@@ -31,3 +24,4 @@ func get_nearest_object():
 				min_distance = distance
 				objet_proche = objet
 	print(objet_proche)
+	return objet_proche
