@@ -33,6 +33,8 @@ func _check_control():
 
 func interagir(): 
 	var objet = $GrabArea.get_nearest_object() #get_node("noeud").function au lieu de $ pour appeler un script qui se situe dans le même noeud
+	if not objet:
+		return
 	if objet.get_class()=="Pipe":
 		attraper(objet)
 	if objet.get_class()=="FixedPipe":
