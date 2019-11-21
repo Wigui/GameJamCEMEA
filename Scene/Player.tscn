@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scene/Player.gd" type="Script" id=1]
 [ext_resource path="res://AssetGraphique/Chara/CharaFace.png" type="Texture" id=2]
 [ext_resource path="res://Scene/GrabArea.gd" type="Script" id=3]
+[ext_resource path="res://Scene/Indicator.gd" type="Script" id=4]
+[ext_resource path="res://AssetGraphique/carre.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12.3535, 9.99353 )
@@ -10,6 +12,9 @@ extents = Vector2( 12.3535, 9.99353 )
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 32.4123
 height = 38.6325
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15.4487, 15.5744 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -33,6 +38,18 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="OverlapArea"]
 position = Vector2( 0, 17.1144 )
 shape = SubResource( 1 )
+
+[node name="Indicator" type="Area2D" parent="."]
+visible = false
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Indicator"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Indicator"]
+shape = SubResource( 3 )
 [connection signal="body_entered" from="GrabArea" to="GrabArea" method="_on_GrabArea_body_entered"]
 [connection signal="body_exited" from="GrabArea" to="GrabArea" method="_on_GrabArea_body_exited"]
 [connection signal="body_shape_exited" from="OverlapArea" to="." method="_on_OverlapArea_body_shape_exited"]
+[connection signal="body_entered" from="Indicator" to="Indicator" method="_on_Indicator_body_entered"]
+[connection signal="body_exited" from="Indicator" to="Indicator" method="_on_Indicator_body_exited"]

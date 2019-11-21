@@ -14,6 +14,7 @@ func _physics_process(delta):
 	move_and_slide(velocite)
 	if tuyau:
 		tuyau.global_position=global_position #self.global_position
+		$Indicator.global_position=global_position.snapped(Vector2(32,32))
 
 func _check_control():
 	if Input.is_action_pressed("ui_right"):
@@ -47,16 +48,20 @@ func attraper(objet):
 	tuyau=objet
 	objet.global_position=global_position
 	objet.z_index=1
+	$Indicator.visible=true
 
 func lacher():
 	if not tuyau:
 		return
+	if not $Indicator.peut_placer:
+		pass
 	tuyau.get_node("CollisionShape2D").disabled=false
 	tuyau.global_position = tuyau.global_position.snapped(Vector2(32,32))
 	tuyau.z_index=0
 	ancien_tuyau=tuyau
 	add_collision_exception_with(ancien_tuyau)
 	tuyau = null
+	$Indicator.visible=false
 	
 func tourner(objet):
 	objet.rotation_degrees = int(objet.rotation_degrees+90)%360
@@ -65,3 +70,4 @@ func _on_OverlapArea_body_shape_exited(body_id, body, body_shape, area_shape):
 	if ancien_tuyau and body==ancien_tuyau:
 		remove_collision_exception_with(ancien_tuyau)
 		ancien_tuyau=null
+
