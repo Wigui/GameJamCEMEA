@@ -30,7 +30,10 @@ func _check_control():
 	if Input.is_action_just_pressed("attraper"):
 		interagir() 
 	if Input.is_action_just_released("attraper"):
-		lacher()
+		if $Indicator.peut_placer:
+			lacher()
+		else:
+			$Indicator.veut_placer = true
 
 func interagir(): 
 	var objet = $GrabArea.get_nearest_object() #get_node("noeud").function au lieu de $ pour appeler un script qui se situe dans le même noeud
@@ -53,8 +56,6 @@ func attraper(objet):
 func lacher():
 	if not tuyau:
 		return
-	if not $Indicator.peut_placer:
-		pass
 	tuyau.get_node("CollisionShape2D").disabled=false
 	tuyau.global_position = tuyau.global_position.snapped(Vector2(32,32))
 	tuyau.z_index=0
@@ -71,3 +72,12 @@ func _on_OverlapArea_body_shape_exited(body_id, body, body_shape, area_shape):
 		remove_collision_exception_with(ancien_tuyau)
 		ancien_tuyau=null
 
+# A chaque fois que l'indicateur change de case
+func _on_Indicator_has_changed_position():
+	if not tuyau:
+		return
+	print($Indicator.peut_placer, " " , $Indicator.veut_placer)
+	if $Indicator.peut_placer and $Indicator.veut_placer:
+		lacher()
+		$Indicator.veut_placer = false
+	

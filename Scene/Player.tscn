@@ -41,6 +41,7 @@ shape = SubResource( 1 )
 
 [node name="Indicator" type="Area2D" parent="."]
 visible = false
+show_behind_parent = true
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Indicator"]
@@ -53,3 +54,4 @@ shape = SubResource( 3 )
 [connection signal="body_shape_exited" from="OverlapArea" to="." method="_on_OverlapArea_body_shape_exited"]
 [connection signal="body_entered" from="Indicator" to="Indicator" method="_on_Indicator_body_entered"]
 [connection signal="body_exited" from="Indicator" to="Indicator" method="_on_Indicator_body_exited"]
+[connection signal="has_changed_position" from="Indicator" to="." method="_on_Indicator_has_changed_position"]
