@@ -15,10 +15,10 @@ func _physics_process(delta):
 		emit_signal("has_changed_position")
 
 func _on_Indicator_body_entered(body):
-	if body.get_class()=="Pipe":
+	if body.get_class()=="Pipe" or body.get_class()=="PipeStack":
 		peut_placer=false
 
 
 func _on_Indicator_body_exited(body):
-	if body.get_class()=="Pipe":
+	if body.get_class()=="Pipe" or body.get_class()=="PipeStack":
 		peut_placer=true

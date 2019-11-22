@@ -80,4 +80,6 @@ func _on_Indicator_has_changed_position():
 	if $Indicator.peut_placer and $Indicator.veut_placer:
 		lacher()
 		$Indicator.veut_placer = false
-	
+
+func get_class():
+	return "Player"
