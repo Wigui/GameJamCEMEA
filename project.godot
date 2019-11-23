@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="GameJamCEMEA"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1000
+
 [input]
 
 attraper={
@@ -28,4 +32,5 @@ attraper={
 
 [rendering]
 
+environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
 environment/default_environment="res://default_env.tres"

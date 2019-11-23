@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="EcranTitre" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 100.0
+margin_top = 120.0
+margin_right = 900.0
+margin_bottom = 500.0
